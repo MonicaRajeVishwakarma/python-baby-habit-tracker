@@ -97,28 +97,37 @@ def add_feeding():
 ### Saving to a file
 
 ```python
-def save_to_file(records):
-    import os
-    os.makedirs("data", exist_ok=True)
+from pathlib import Path
+import csv
+from typing import List, Dict
 
+DATA_PATH = Path("data/habits.csv")
 
-    with open("data/habits.csv", "a") as file:
-        for r in records:
-            file.write(r + "")
-        
-    print("Data saved to data/habits.csv successfully!")
+def write_habit(row: Dict[str, str]) -> None:
+    """Append a habit entry to the CSV file."""
+    with open(DATA_PATH, "a", newline="") as file:
+        writer = csv.DictWriter(file, fieldnames=row.keys())
+        writer.writerow(row)
+
 ```
 
 ### Loading from a file
 
 ```python
-def load_from_file():
-    try:
-        with open("data/habits.csv", "r") as file:
-            return file.readlines()
-    except FileNotFoundError:
-        print("No existing habits.csv found in data/ directory.")
+from pathlib import Path
+import csv
+from typing import List, Dict
+
+DATA_PATH = Path("data/habits.csv")
+
+def read_habits() -> List[Dict[str,str]]:
+    """Read and return all entries."""
+    if not DATA_PATH.exists():
         return []
+
+    with open(DATA_PATH, "r", newline="") as file:
+        reader = csv.DictReader(file)
+        return list(reader)
 ```
 
 ---
