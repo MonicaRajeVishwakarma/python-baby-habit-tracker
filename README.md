@@ -85,15 +85,6 @@ Simply type the number of your choice.
 
 ## Example Code Snippets
 
-### Adding a feeding record
-
-```python
-def add_feeding():
-    time = input("Enter feeding time: ")
-    amount = input("Enter amount (ml): ")
-    return f"Feeding - Time: {time}, Amount: {amount}ml"
-```
-
 ### Saving to a file
 
 ```python
