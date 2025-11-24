@@ -86,7 +86,7 @@ def main() -> None:
                 entry = prompt_for_entry()
                 if entry:
                     write_habit(entry)
-                    print("✔ Entry saved!")
+                    print("Entry saved!")
                     logging.info("Entry saved successfully.")
             case "2":
                 display_entries()
